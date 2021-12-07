@@ -1,4 +1,6 @@
 sudo: required
+node_js:
+  - "stable"
 services:
   - docker
 
