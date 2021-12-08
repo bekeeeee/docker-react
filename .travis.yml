@@ -1,27 +1,40 @@
-sudo: required
-node_js:
-  - "stable"
-services:
-  - docker
+# sudo: required
+# node_js:
+#   - "stable"
+# services:
+#   - docker
 
-before_install:
-  - docker build -t beke/docker-react -f Dockerfile.dev .
+# before_install:
+#   - docker build -t beke/docker-react -f Dockerfile.dev .
 
-script:
-  - docker run -e CI=true  beke/docker-react npm run test
+# script:
+#   - docker run -e CI=true  beke/docker-react npm run test
 
-deploy:
-  provider: elasticbeanstalk
-  region: "eu-west-1"
-  app: "docker-react"
-  env: "Dockerreact-env"
-  bucket_name: "elasticbeanstalk-eu-west-1-194156724556"
-  bucket_path: "docker-react"
-  on:
-    branch: master
-  access_key_id: $AWS_ACCESS_KEY
-  secret_acces_key: $AWS_SECRET_KEY
+# deploy:
+#   provider: elasticbeanstalk
+#   region: "eu-west-1"
+#   app: "docker-react"
+#   env: "Dockerreact-env"
+#   bucket_name: "elasticbeanstalk-eu-west-1-194156724556"
+#   bucket_path: "docker-react"
+#   on:
+#     branch: master
+#   access_key_id: $AWS_ACCESS_KEY
+#   secret_acces_key: $AWS_SECRET_KEY
 
-  # edge: true
+#   # edge: true
 
-  # Dockerreact-env.eba-s85e3wz6.eu-west-1.elasticbeanstalk.com
+#   # Dockerreact-env.eba-s85e3wz6.eu-west-1.elasticbeanstalk.com
+
+
+
+deploy:  provider: elasticbeanstalk  
+region: "eu-central-1a	" ### AWS region of your choice
+app: "sample-docker-react" ### Your EB App name
+env: "Sampledockerreact-env" ### Your EB App environment name
+bucket_name: "my-new-bucket-beke" ### S3 bucket name
+bucket_path: "sample-docker-react" ### S3 folder name under S3 bucket above
+on:
+  branch: master
+access_key_id: "$AWS_ACCESS_KEY"
+secret_access_key: "$AWS_SECRET_KEY"
