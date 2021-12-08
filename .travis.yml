@@ -27,6 +27,16 @@
 #   # Dockerreact-env.eba-s85e3wz6.eu-west-1.elasticbeanstalk.com
 
 
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker build -t beke/docker-react -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true  beke/docker-react npm run test
 
 deploy:  provider: elasticbeanstalk  
 region: "eu-central-1a	" ### AWS region of your choice
